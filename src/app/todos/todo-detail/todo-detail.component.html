@@ -1,0 +1,38 @@
+<div class="row ml-2">
+    <div class="col">
+        <div class="row">
+            <div class="col">
+                <h3>Edit task</h3>
+                <ngb-alert type="danger" [dismissible]="false" *ngIf="!shouldDeactivate">
+                    There are unsaved changes. Save your changes before proceeding.
+                </ngb-alert>
+                <hr>
+            </div>
+        </div>
+        <div class="row" *ngIf="todo">
+            <div class="col">
+                <form novalidate #form="ngForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" name="title" [(ngModel)]="todo.title" class="form-control" id="title" placeholder="Enter task title">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea [(ngModel)]="todo.description" name="description" class="form-control" id="description" placeholder="Task description">
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="dueDate">Due date</label>
+                        <div>
+                            <ngb-datepicker [startDate]="todo.dueDate" id="dueDate" name="dueDate" [(ngModel)]="todo.dueDate" #d="ngbDatepicker"></ngb-datepicker>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-warning ml-1" (click)="cancel()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" routerLink="/">
+            <fa-icon icon="tasks"></fa-icon> ng-todo</a>
+        <button class="navbar-toggler hidden-sm-up" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+        <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/todos/add" placement="bottom" ngbTooltip="Add new task">
+                        <fa-icon icon="plus"></fa-icon>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
