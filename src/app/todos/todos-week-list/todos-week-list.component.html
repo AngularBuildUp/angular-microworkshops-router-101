@@ -1,0 +1,41 @@
+<div class="row ml-2 pb-5">
+    <div class="col">
+        <h3>Next 7 days</h3>
+        <div class="row mt-5 pl-1 pr-1" *ngFor="let day of week?.days; let i=index;">
+            <div class="col">
+                <h6>{{day.key}} <small>{{day.date | date:'dd MMM'}}</small></h6>
+                <hr>
+                <p class="text-secondary" *ngIf="todos[i].length === 0">
+                    <fa-icon icon="inbox"></fa-icon> No tasks planned for {{day.date | date:'EEEE'}}
+                </p>
+                <div class="card" style="width: 18rem;" *ngIf="todos[i].length > 0">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" *ngFor="let todo of todos[i]">
+                            <!-- TODO:Links-Navigate to detail page with return URL -->
+                            <a>{{todo.title}}</a>
+                            <button class="close" type="button" (click)="markAsCompleted(todo, i)">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <hr>
+                <form class="form-row" novalidate #form="ngForm" (ngSubmit)="addTask(newTask, myIndex, dueDate, form)">
+                    <div class="col-5">
+                        <div class="form-group">
+                            <input ngModel #newTask="ngModel" class="form-control" type="text" name="newTask" placeholder="Add task" />
+                            <input type="hidden" #myIndex [value]="i" name="myIndex" />
+                            <input type="hidden" #dueDate [value]="day.date" name="dueDate" />
+                        </div>
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-default">
+                            <span class="font-weight-light fs-14">
+                                <fa-icon icon="plus"></fa-icon> Add task
+                            </span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

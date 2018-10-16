@@ -1,0 +1,57 @@
+<div class="row ml-2">
+    <div class="col">
+        <div class="row">
+            <div class="col">
+                <h3>Inbox</h3>
+                <small class="text-info">Click on x icon to mark task as complete.</small>
+                <hr>
+            </div>
+        </div>
+        <div class="row" *ngIf="hasTodos()">
+            <div class="col-md-6">
+                <ul class="list-group list-group-flush">
+                    <ng-container *ngFor="let todo of todos">
+                        <li class="list-group-item" *ngIf="!todo.completed || showCompleted">
+                            <ngb-alert [dismissible]="!todo.completed" [type]="todo.completed ? 'success': 'secondary'" (close)="close(todo.id)">
+                                <fa-icon *ngIf="todo.completed" icon="check-circle"></fa-icon>&nbsp;
+                                <fa-icon *ngIf="!todo.completed" icon="spinner"></fa-icon>&nbsp;
+                                <!-- TODO:Links-Navigate to detail page -->
+                                <a>{{todo.title}}</a>&nbsp;<small class="text-info">({{todo.dueDate | date: 'dd MMM yyyy'}})</small>
+                            </ngb-alert>
+                        </li>
+                    </ng-container>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md">
+                <!-- TODO:Links-Navigate to create new task page. No brackets -->
+                <a class="nav-link">
+                    <fa-icon icon="plus"></fa-icon> Add new</a>
+            </div>
+            <div class="col-md ml-auto text-right">
+                <a href="javascript:void(0)" (click)="toggleCompleted()">
+                    <span *ngIf="showCompleted">
+                      <fa-icon icon="toggle-on"></fa-icon>
+                    </span>
+                    <span *ngIf="!showCompleted">
+                        <fa-icon icon="toggle-off"></fa-icon>
+                    </span> Show completed
+                </a>
+            </div>
+        </div>
+        <div class="row" *ngIf="!hasTodos()">
+            <div class="col">
+                <h2 class="text-center">
+                    <fa-icon icon="inbox"></fa-icon>
+                </h2>
+                <h5 class="text-center">All clear!</h5>
+                <p class="text-center">Everything looks sorted.</p>
+                <div class="text-center">
+                    <!-- TODO:Links-Navigate to create new task page. No brackets. -->
+                    <button class="btn btn-default">Add new task</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
