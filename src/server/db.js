@@ -35,7 +35,7 @@ module.exports = {
         {
             id: 7,
             title: "Enjoy Sunday",
-            dueDate: new Date(2018, 10, 3),
+            dueDate: new Date(2018, 10, 4),
             completed: false
         },
         {

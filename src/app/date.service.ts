@@ -54,7 +54,7 @@ export class DateService {
   }
 
   private getWeekDayBy(n: number): string {
-    const next = this.now.getDay() + (n - 1);
+    const next = this.now.getDay() + n;
     if(next > this.days.length - 1) {
       const fixed = next - this.days.length;
       return this.days[fixed];
